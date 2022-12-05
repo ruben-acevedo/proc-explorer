@@ -1,12 +1,10 @@
 {
-  "name": "proc-manager",
+  "name": "proc-explorer",
   "version": "1.0.0",
-  "description": "",
+  "description": "/proc/ folder explorer and JSON parser",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "keywords": [],
-  "author": "",
+  "author": "Rubén Acevedo",
   "license": "ISC"
 }

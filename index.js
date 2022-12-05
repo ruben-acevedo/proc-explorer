@@ -1,24 +1,39 @@
 const fs = require("fs");
-const meminfo = fs.readFileSync("/proc/meminfo", { encoding: "utf8" });
-const iomem = fs.readFileSync("/proc/iomem", { encoding: "utf8" });
-const uptime = fs.readFileSync("/proc/uptime", { encoding: "utf8" });
-const partitions = fs.readFileSync("/proc/partitions", { encoding: "utf8" });
-const diskStats = fs.readFileSync("/proc/diskstats", { encoding: "utf8" });
-const cpuinfo = fs.readFileSync("/proc/cpuinfo", { encoding: "utf8" });
-const ChildProcess = require("child_process");
 
-const getProcess = () => {
-  ChildProcess.exec("chmod +x ./meminfo.sh");
-  ChildProcess.exec("./meminfo.sh", (error, stdout, stderr) => {
-    if (error) {
-      throw error;
+const getProcessStatus = (pid, callback) => {
+  let status = fs.readFileSync(`/proc/${pid}/status`, "utf8");
+  let obj = {};
+  status = status.split("\n");
+  status.forEach((line) => {
+    line = line.split(":");
+    if (line.length === 2) {
+      line[1] = line[1].replace("\t", " ");
+      obj[line[0]] = line[1].trim().split(" ", 1)[0];
     }
-    if (stderr) {
-      throw stderr;
+  });
+  callback(obj);
+};
+
+const getMemInfo = (callback) => {
+  let meminfo = fs.readFileSync("/proc/meminfo", "utf8").split("\n");
+  let obj = {};
+
+  meminfo.forEach((line) => {
+    line = line.split(":");
+    if (line.length === 2) {
+      obj[line[0]] = line[1].trim().split(" ", 1)[0];
     }
-    const out = JSON.parse(stdout);
-    console.log(out);
+  });
+  callback(obj);
+};
+
+const getUptime = (callback) => {
+  let uptime = fs.readFileSync("/proc/uptime", { encoding: "utf8" }).split(" ");
+  uptime[1] = uptime[1].trim();
+  callback({
+    sysUptime: parseFloat(uptime[0]),
+    idleProcess: parseFloat(uptime[1]),
   });
 };
 
-getProcess();
+module.exports = { getMemInfo, getUptime, getProcessStatus };
