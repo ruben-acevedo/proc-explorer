@@ -1,6 +1,6 @@
 {
   "name": "proc-explorer",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "/proc/ folder explorer and JSON parser",
   "main": "index.js",
   "scripts": {},

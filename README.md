@@ -7,6 +7,7 @@
 - /proc/meminfo
 - /proc/{pid}/status
 - /proc/uptime
+- /proc/cpuinfo
 
 ### Installation:
 
@@ -155,6 +156,47 @@ proc.status(1,(object) => console.log(object))
   voluntary_ctxt_switches: '5956',
   nonvoluntary_ctxt_switches: '201'
 }
+```
+
+##### cpuinfo(callback)
+
+```
+proc.cpuinfo((object) => console.log(object))
+```
+
+##### response:
+
+```
+{
+  processor: ' 15',
+  vendor_id: ' AuthenticAMD',
+  cpu_family: ' 25',
+  model: ' 33',
+  model_name: ' AMD Ryzen 7 5800X 8-Core Processor',
+  stepping: ' 0',
+  microcode: ' 0xa201006',
+  cpu_MHz: ' 3800.000',
+  cache_size: ' 512 KB',
+  physical_id: ' 0',
+  siblings: ' 16',
+  core_id: ' 7',
+  cpu_cores: ' 8',
+  apicid: ' 15',
+  initial_apicid: ' 15',
+  fpu: ' yes',
+  fpu_exception: ' yes',
+  cpuid_level: ' 16',
+  wp: ' yes',
+  flags: ' fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba ibrs ibpb stibp vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local clzero irperf xsaveerptr rdpru wbnoinvd arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold avic v_vmsave_vmload vgif v_spec_ctrl umip pku ospke vaes vpclmulqdq rdpid overflow_recov succor smca fsrm',
+  bugs: ' sysret_ss_attrs null_seg spectre_v1 spectre_v2 spec_store_bypass',
+  bogomips: ' 7585.97',
+  TLB_size: ' 2560 4K pages',
+  clflush_size: ' 64',
+  cache_alignment: ' 64',
+  address_sizes: ' 48 bits physical, 48 bits virtual',
+  power_management: ' ts ttp tm hwpstate cpb eff_freq_ro [13] [14]'
+}
+
 ```
 
 ##### uptime(callback)

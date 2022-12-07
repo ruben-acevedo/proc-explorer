@@ -1,8 +1,25 @@
 const fs = require('fs')
 
+const cpuinfo = (callback) => {
+  let cpuinfo = fs.readFileSync('/proc/cpuinfo', 'utf8')
+  let obj = {}
+
+  cpuinfo = cpuinfo.split('\n')
+  cpuinfo.forEach((line) => {
+    line = line.split(':')
+    if (line.length === 2) {
+      line[0] = line[0].replace(' ', '_')
+      line[0] = line[0].trim()
+      obj[line[0]] = line[1]
+    }
+  })
+  callback(obj)
+}
+
 const status = (pid, callback) => {
   let status = fs.readFileSync(`/proc/${pid}/status`, 'utf8')
   let obj = {}
+
   status = status.split('\n')
   status.forEach((line) => {
     line = line.split(':')
@@ -36,4 +53,4 @@ const uptime = (callback) => {
   })
 }
 
-module.exports = { meminfo, uptime, status }
+module.exports = { meminfo, uptime, status, cpuinfo }
