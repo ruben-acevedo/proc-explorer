@@ -4,9 +4,9 @@
 
 #### For the moment it maps:
 
-/proc/meminfo
-/proc/{pid}/status
-/proc/uptime
+- /proc/meminfo
+- /proc/{pid}/status
+- /proc/uptime
 
 ### Installation:
 
@@ -23,10 +23,10 @@ const proc = require("proc-explorer")
 
 #### Functions:
 
-##### getMemInfo(callback)
+##### meminfo(callback)
 
 ```
-proc.getMemInfo((meminfo) => console.log(meminfo))
+proc.meminfo((object) => console.log(object))
 ```
 
 ##### response:
@@ -87,10 +87,10 @@ proc.getMemInfo((meminfo) => console.log(meminfo))
 }
 ```
 
-##### getProcessStatus(pid, callback)
+##### status(pid, callback)
 
 ```
-proc.getProcessStatus(1,(status) => console.log(status))
+proc.status(1,(object) => console.log(object))
 ```
 
 ##### response:
@@ -157,10 +157,10 @@ proc.getProcessStatus(1,(status) => console.log(status))
 }
 ```
 
-##### getUptime(callback)
+##### uptime(callback)
 
 ```
-proc.getUptime((uptime) => console.log(uptime))
+proc.uptime((object) => console.log(object))
 ```
 
 ##### response:
@@ -170,3 +170,7 @@ proc.getUptime((uptime) => console.log(uptime))
 ```
 
 ### Feel free to contribute!
+
+### Contact:
+
+##### rubenfsolorzano@hotmail.com
